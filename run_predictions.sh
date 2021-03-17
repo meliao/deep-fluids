@@ -1,11 +1,14 @@
 #!/bin/bash
 
 #SBATCH --job-name=smoke3_vel_buo3_f250
-#SBATCH --time=24:00:00
-#SBATCH --partition=general
-#SBATCH --gres=gpu:1
+#SBATCH --time=4:00:00
 #SBATCH --output=smoke3_vel_buo3_f250.out
 #SBATCH --error=smoke3_vel_buo3_f250.err
+#SBATCH --partition=general
+#SBATCH --mem-per-gpu=8G           # memory per GPU required by your script. This is NOT GPU memory
+#SBATCH --gpus=1            # total number of GPUs required: gpu-type:qty
+#SBATCH --gpus-per-task=1   # gpu-type:qty
+#SBATCH --cpus-per-task=1           # number of cpus (not hyperthreaded) per task
 
 echo "`date` Starting Job"
 echo "SLURM Info: Job name:${SLURM_JOB_NAME}"
@@ -13,6 +16,7 @@ echo "    JOB ID: ${SLURM_JOB_ID}"
 echo "    Host list: ${SLURM_JOB_NODELIST}"
 
 
+source /opt/conda/bin/activate deep_fluids
 python main.py \
   --is_3d=True \
   --dataset=smoke3_vel5_buo3_f250 \
