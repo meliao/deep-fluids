@@ -2,8 +2,8 @@
 
 #SBATCH --job-name=smoke3_vel_buo3_f250
 #SBATCH --time=4:00:00
-#SBATCH --output=smoke3_vel_buo3_f250.out
-#SBATCH --error=smoke3_vel_buo3_f250.err
+#SBATCH --output=00_smoke3_vel_buo3_f250.out
+#SBATCH --error=00_smoke3_vel_buo3_f250.err
 #SBATCH --partition=general
 #SBATCH --mem-per-gpu=8G           # memory per GPU required by your script. This is NOT GPU memory
 #SBATCH --gpus=1            # total number of GPUs required: gpu-type:qty
@@ -23,7 +23,8 @@ python main.py \
   --res_x=112 \
   --res_y=64 \
   --res_z=32 \
-  --batch_size=4 \
+  --batch_size=100 \
+  --max_epoch=50 \
   --num_worker=1 \
   --log_step=100 \
   --test_step=20
