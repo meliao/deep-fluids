@@ -23,8 +23,8 @@ python main.py \
   --res_x=112 \
   --res_y=64 \
   --res_z=32 \
-  --batch_size=100 \
-  --max_epoch=50 \
+  --batch_size=4 \
+  --max_epoch=5 \
   --num_worker=1 \
   --log_step=100 \
   --test_step=20
