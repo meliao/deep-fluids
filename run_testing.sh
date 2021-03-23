@@ -28,4 +28,19 @@ python main.py \
 --res_y=64 \
 --res_z=32 \
 --batch_size=4 \
---num_worker=1 
+--num_worker=1 \
+--test_params 0 0
+
+python main.py \
+--is_train=False \
+--load_path=predictions/2021-03-22_preds-10-epochs \
+--model_path=log/smoke3_vel5_buo3_f250/0317_123909_de_tag/ \
+--test_batch_size=5 \
+--is_3d=True \
+--dataset=smoke3_vel5_buo3_f250 \
+--res_x=112 \
+--res_y=64 \
+--res_z=32 \
+--batch_size=4 \
+--num_worker=1 \
+--test_params 0 1

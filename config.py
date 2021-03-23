@@ -45,6 +45,8 @@ data_arg.add_argument('--data_type', type=str, default='velocity')
 # Training / test parameters
 train_arg = add_argument_group('Training')
 train_arg.add_argument('--is_train', type=str2bool, default=True)
+train_arg.add_argument('--test_params', type=int, nargs=2, default=[10, 2],
+                        help="Latent space parameters for creating test outputs with the generative architecture")
 train_arg.add_argument('--start_step', type=int, default=0)
 train_arg.add_argument('--max_epoch', type=int, default=100)
 train_arg.add_argument('--lr_update_step', type=int, default=120000)
@@ -71,7 +73,7 @@ misc_arg.add_argument('--gpu_id', type=str, default='0')
 
 def get_config():
     config, unparsed = parser.parse_known_args()
-    
+
     import os
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID" # so the IDs match nvidia-smi
     os.environ["CUDA_VISIBLE_DEVICES"] = config.gpu_id # "0, 1" for multiple
