@@ -27,30 +27,46 @@ def transpose_and_shave(x):
     x = x[:, 2:s[1]-2, 2:s[2]-2, 2:s[3]-2]
     return x
 
+def save(x, fp_out):
+    x.tofile(fp_out)
 
 def main(args):
     if not os.path.isdir(args.out_dir):
         os.mkdir(args.out_dir)
 
     for i in range(args.start, args.stop):
-        tag = "0_0_{:03d}".format(i)
-        fp_in = os.path.join(args.in_dir, "0_0_{}.npz".format(i))
+        tag = "{:03d}".format(i)
+        fp_in = os.path.join(args.in_dir, args.in_pattern.format(i))
 
         logging.info("Loading file: {}".format(fp_in))
 
         x = load(fp_in)
+        if args.save_raw:
+            out_fp = os.path.join(args.out_dir, "{}.bin".format(tag))
+            logging.info("SAVE: {} to {}".format(x.shape, out_fp))
+            save(x, out_fp)
+            continue
         x = transpose_and_shave(x)
-        save_2d(args.out_dir, x, tag)
-        save_3d(args.out_dir, x, tag)
+        if args.save_2d:
+            save_2d(args.out_dir, x, tag)
+
+        if args.save_3d:
+            save_3d(args.out_dir, x, tag)
+
+
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-in_dir")
+    parser.add_argument("-in_pattern", default="0_0_{}.npz")
     parser.add_argument("-out_dir")
     parser.add_argument("-start", type=int, default=0)
     parser.add_argument("-stop", type=int, default=250)
+    parser.add_argument("-save_raw", type=bool, default=True)
+    parser.add_argument("-save_2d", type=bool, default=False)
+    parser.add_argument("-save_3d", type=bool, default=False)
 
     args = parser.parse_args()
     fmt = "%(asctime)s: %(levelname)s - %(message)s"
