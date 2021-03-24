@@ -23,8 +23,9 @@ python main.py \
   --res_x=112 \
   --res_y=64 \
   --res_z=32 \
-  --batch_size=4 \
-  --max_epoch=5 \
+  --batch_size=5 \
+  --max_epoch=100 \
   --num_worker=1 \
   --log_step=100 \
-  --test_step=20
+  --test_step=20 \
+  --model_dir "log/long_training_model"
