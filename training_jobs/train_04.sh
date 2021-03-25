@@ -20,8 +20,7 @@ source /opt/conda/bin/activate deep_fluids
 
 python main.py \
 --is_train=False \
---load_path=predictions/long_run-50-epochs \
---model_path=log/smoke3_vel5_buo3_f250/0324_110822_de_tag/ \
+--load_path=log/smoke3_vel5_buo3_f250/0324_110822_de_tag/ \
 --test_batch_size=5 \
 --is_3d=True \
 --dataset=smoke3_vel5_buo3_f250 \
@@ -32,10 +31,12 @@ python main.py \
 --num_worker=1 \
 --test_params 0 0
 
+mkdir -p predictions/long_run-50-epochs
+mv log/smoke3_vel5_buo3_f250/0324_110822_de_tag/0_0/ predictions/long_run-50-epochs
+
 python main.py \
 --is_train=False \
---load_path=predictions/long_run-50-epochs \
---model_path=log/smoke3_vel5_buo3_f250/0324_110822_de_tag/ \
+--load_path=log/smoke3_vel5_buo3_f250/0324_110822_de_tag/ \
 --test_batch_size=5 \
 --is_3d=True \
 --dataset=smoke3_vel5_buo3_f250 \
@@ -45,6 +46,8 @@ python main.py \
 --batch_size=4 \
 --num_worker=1 \
 --test_params 10 2
+
+mv log/smoke3_vel5_buo3_f250/0324_110822_de_tag/10_2/ predictions/long_run-50-epochs
 
 python main.py \
   --is_3d=True \

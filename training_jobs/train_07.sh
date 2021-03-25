@@ -2,8 +2,8 @@
 
 #SBATCH --job-name=train_smoke3
 #SBATCH --time=4:00:00
-#SBATCH --output=slurm_logs/05_smoke3_vel_buo3_f250.out
-#SBATCH --error=slurm_logs/05_smoke3_vel_buo3_f250.err
+#SBATCH --output=slurm_logs/07_smoke3_vel_buo3_f250.out
+#SBATCH --error=slurm_logs/07_smoke3_vel_buo3_f250.err
 #SBATCH --partition=general
 #SBATCH --mem-per-gpu=8G           # memory per GPU required by your script. This is NOT GPU memory
 #SBATCH --gpus=1            # total number of GPUs required: gpu-type:qty
@@ -31,8 +31,8 @@ python main.py \
 --num_worker=1 \
 --test_params 0 0
 
-mkdir -p predictions/long_run-60-epochs
-mv log/smoke3_vel5_buo3_f250/0324_110822_de_tag/0_0/ predictions/long_run-60-epochs
+mkdir -p predictions/long_run-80-epochs
+mv log/smoke3_vel5_buo3_f250/0324_110822_de_tag/0_0/ predictions/long_run-80-epochs
 
 python main.py \
 --is_train=False \
@@ -47,7 +47,7 @@ python main.py \
 --num_worker=1 \
 --test_params 10 2
 
-mv log/smoke3_vel5_buo3_f250/0324_110822_de_tag/10_2/ predictions/long_run-60-epochs
+mv log/smoke3_vel5_buo3_f250/0324_110822_de_tag/10_2/ predictions/long_run-80-epochs
 
 python main.py \
   --is_3d=True \
